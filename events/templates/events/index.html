@@ -17,7 +17,11 @@
                 <div class="card-body ">
                     <div class="image-container">
                         <a href="">
+                            {% if "placeholder" in x.image.url %}
                             <img class="card-img-top image-fluid" src="{% static 'images/game-cases.jpg' %}" alt="placeholder image">
+                            {% else %}
+                            <img class="card-img-top image-fluid" src="{{ x.image.url }}" alt="{{ x.title }}">
+                            {% endif %}
                         </a>
                     </div>
                     <a href="" class="post-link">
