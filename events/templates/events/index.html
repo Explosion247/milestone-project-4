@@ -3,35 +3,40 @@
 
 {% block content %}
 <div class="container-fluid">
-    <div class="row">
-        <div class="img-wrapper m-4">
-            <img class="img-responsive" style="max-width: 1000px;"
-                src="{% static 'images/title-image.jpg' %}">
-            <div class="img-overlay">
-                <button class="btn btn-md btn-success btn-location">Button</button>
+  <div class="row">
+    <div class="col-12">
+        <div class="text-center my-4">
+            <div class="position-relative d-inline-block">
+                <img src="{% static 'images/title-image.jpg' %}" class="img-fluid" alt="">
+                <button class="btn btn-success position-absolute bottom-0 start-0 m-3">Button</button>
             </div>
         </div>
-        {% for x in object_list %}
-        <div class="col mb-4">
-            <div class="card mb-4">
-                <div class="card-body ">
-                    <div class="image-container">
-                        <a href="">
-                            {% if "placeholder" in x.image.url %}
-                            <img class="card-img-top image-fluid" src="{% static 'images/game-cases.jpg' %}" alt="placeholder image">
-                            {% else %}
-                            <img class="card-img-top image-fluid" src="{{ x.image.url }}" alt="{{ x.title }}">
-                            {% endif %}
-                        </a>
-                    </div>
-                    <a href="" class="post-link">
-                        <h2 class="card-title">{{ x.title }}</h2>
-                        <p>Location</p>
-                    </a>
-                </div>
-            </div>
-        </div>
-    {% endfor %}
     </div>
+
+
+  <div class="row">
+    {% for x in object_list %}
+      <div class="col-md-4 mb-4">
+        <div class="card h-100">
+            <div class="card-body ">
+            <div class="image-container">
+                <a href="">
+                    {% if "placeholder" in x.image.url %}
+                    <img class="card-img-top image-fluid" src="{% static 'images/game-cases.jpg' %}" alt="placeholder image">
+                    {% else %}
+                    <img class="card-img-top image-fluid" src="{{ x.image.url }}" alt="{{ x.title }}">
+                    {% endif %}
+                </a>
+            </div>
+                <a href="" class="post-link">
+                    <h2 class="card-title">{{ x.title }}</h2>
+                    <p>Location</p>
+                </a>
+            </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
 </div>
-{% endblock %}  
+{% endblock %}
+
