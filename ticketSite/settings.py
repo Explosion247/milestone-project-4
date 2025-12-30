@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 
 from pathlib import Path
 import os
+if os.path.isfile('env.py'):
+    import env
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -23,7 +25,7 @@ AUTH_DIRS = os.path.join(BASE_DIR, 'templates', 'allauth')
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-0^zn_a25z_6pk6=3=6g6akog3iz9#oz4@w*00=)ll$8fk7#v)t'
+SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -100,6 +102,10 @@ WSGI_APPLICATION = 'ticketSite.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
+
+db_url = os.environ.get("DATABASE_URL")
+if isinstance(db_url, bytes):
+    db_url = db_url.decode 
 
 DATABASES = {
     'default': {

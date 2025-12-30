@@ -2,31 +2,32 @@
 {% load static %}
 
 {% block content %}
-<div>
-    <div class="img-wrapper m-4">
-        <img class="img-responsive"
-            src="{% static 'images/title-image.jpg' %}">
-        <div class="img-overlay">
-        <button class="btn btn-md btn-success btn-location">Button</button>
-        </div>
-    </div>
-
-    <div class="card mb-4">
-        <div class="card-body ">
-            <div class="image-container">
-                <a href="#">
-
-                <img class="card-img-top" src="" alt="placeholder image">
-
-                <img class="card-img-top" src="" alt="">
-
-                </a>
+<div class="container-fluid">
+    <div class="row">
+        <div class="img-wrapper m-4">
+            <img class="img-responsive" style="max-width: 1000px;"
+                src="{% static 'images/title-image.jpg' %}">
+            <div class="img-overlay">
+                <button class="btn btn-md btn-success btn-location">Button</button>
             </div>
-            <a href="" class="post-link">
-                <h2 class="card-title"></h2>
-                <p>Created by</p>
-            </a>
         </div>
+        {% for x in object_list %}
+        <div class="col mb-4">
+            <div class="card mb-4">
+                <div class="card-body ">
+                    <div class="image-container">
+                        <a href="">
+                            <img class="card-img-top image-fluid" src="{% static 'images/game-cases.jpg' %}" alt="placeholder image">
+                        </a>
+                    </div>
+                    <a href="" class="post-link">
+                        <h2 class="card-title">{{ x.title }}</h2>
+                        <p>Location</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
     </div>
 </div>
 {% endblock %}  
