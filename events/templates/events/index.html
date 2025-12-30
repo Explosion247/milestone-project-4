@@ -2,5 +2,31 @@
 {% load static %}
 
 {% block content %}
-<h1 class="display-4 text-success">It works</h1>
+<div>
+    <div class="img-wrapper m-4">
+        <img class="img-responsive"
+            src="{% static 'images/title-image.jpg' %}">
+        <div class="img-overlay">
+        <button class="btn btn-md btn-success btn-location">Button</button>
+        </div>
+    </div>
+
+    <div class="card mb-4">
+        <div class="card-body ">
+            <div class="image-container">
+                <a href="#">
+
+                <img class="card-img-top" src="" alt="placeholder image">
+
+                <img class="card-img-top" src="" alt="">
+
+                </a>
+            </div>
+            <a href="" class="post-link">
+                <h2 class="card-title"></h2>
+                <p>Created by</p>
+            </a>
+        </div>
+    </div>
+</div>
 {% endblock %}  

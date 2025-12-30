@@ -1,12 +1,51 @@
 /* Colours */
 
+.nav-bg-col {
+   background-color:#acbcbf ;
+}
+
 body {
     background-color: #5b65a4;
 }
 
-.nav-bg-col {
-    color: #D7E85C;
+.main-bg-col { 
+    background-color: #f4fcfb;
 }
+
+/* title image */
+.img-wrapper {
+  position: relative;
+}
+
+.img-responsive {
+  width: 100%;
+  height: auto;
+}
+
+.img-overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+}
+
+.img-overlay:before {
+  content: ' ';
+  display: block;
+  /* adjust 'height' to position overlay content vertically */
+  height: 50%;
+}
+
+/* button */
+.btn-location{
+    position: absolute;
+    bottom:5%;
+    left: 5%;
+
+}
+
 
 /* Fonts */
 .brand {
@@ -48,9 +87,8 @@ body {
 .image-flash {
     position: absolute;
     bottom: 5%;
-    min-width: 30%;
-    left: -2px;
-    background-color: #188181;
+    left:5%;
+    background-color: #5289ad;
 }
 
 .scale {
