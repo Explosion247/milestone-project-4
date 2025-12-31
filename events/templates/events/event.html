@@ -42,13 +42,16 @@
             <p><strong>{{ comment.author }}</strong> wrote:</p>
             <p>{{ comment.content }}</p>
 
-            <a class="reply-toggle" data-target="#reply-{{ comment.id }}">Reply</a>
-            <div id="reply-{{ comment.id }}" class="mt-2">
+            <a class="reply-toggle btn btn-dark"
+                data-target="#reply-{{ comment.id }}"
+                data-reply="{{ comment.id }}">Reply</a>
+
+            <div id="reply-{{ comment.id }}" class="mt-2 d-none reply-form">
               {% if user.is_authenticated %}
                 <form method="post">
                   {% csrf_token %}
                   {{ comment_form.content }}
-                  <input type="hidden" name="parent_id" value="{{ comment.id }}">
+                  <input type="hidden" name="reply_to" value="{{ comment.id }}">
                   <button type="submit">Submit reply</button>
                 </form>
               {% endif %}
@@ -72,8 +75,9 @@
           <h3>Leave a comment:</h3>
           <p>Posting as {{ user.username }}</p>
           <form id="commentForm" method="post" style="margin-top: 1.3rem;">
-            {{ comment_form | safe }}
             {% csrf_token %}
+            {{ comment_form.content }}
+            <input type="hidden" name="reply_to" value="">
             <button id="submitButton" type="submit" class="btn btn-signup btn-lg">submit</button>
           </form>
           {% else %}

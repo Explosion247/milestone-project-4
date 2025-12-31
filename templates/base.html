@@ -114,6 +114,25 @@
         integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous">
         </script>
         {% block extras %}
+        {{ block.super }}
+        <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const replyForms = document.querySelectorAll('.reply-form');
+            document.querySelectorAll('.reply-toggle').forEach(btn => {
+            btn.addEventListener('click', e => {
+                e.preventDefault();
+                replyForms.forEach(f => f.classList.add('d-none')); // hide others
+                const formWrap = document.querySelector(btn.dataset.target);
+                if (!formWrap) return;
+                formWrap.classList.remove('d-none');
+                const input = formWrap.querySelector('input[name="reply_to"]');
+                if (input) input.value = btn.dataset.reply;
+                const textarea = formWrap.querySelector('textarea');
+                if (textarea) textarea.focus();
+            });
+            });
+        });
+        </script>
         {% endblock %}
 </body>
 

@@ -14,19 +14,38 @@ class EventList(generic.ListView):
 def event_details(request, slug):
     queryset = Event.objects.filter(status=1)
     event = get_object_or_404(queryset, slug=slug)
-    comments = event.comments.all().order_by("-created_at")
+    comments = event.comments.filter(
+        parent__isnull=True
+        ).order_by(
+            "-created_at"
+            ).prefetch_related(
+                "replies",
+                "replies__author"
+                )
     comment_form = CommentForm()
     
     if request.method == "POST":
+        if not request.user.is_authenticated:
+            return render(
+                request,
+                "events/event.html",
+                {
+                    'event': event,
+                    'comments': comments,
+                    'comment_form': comment_form,
+                    'error': "You must be logged in to comment."
+                }
+            )
         comment_form = CommentForm(data=request.POST)
         if comment_form.is_valid():
             comment = comment_form.save(commit=False)
             comment.author = request.user
             comment.event = event
-            parent_id = comment_form.cleaned_data.get("parent_id")
-            if parent_id:
-                comment.parent = event.comments.filter(pk=parent_id).first()
+            reply_to = comment_form.cleaned_data.get("reply_to")
+            if reply_to:
+                comment.parent = event.comments.filter(pk=reply_to).first()
             comment.save()
+            comment_form = CommentForm()
     
     context = {
         'event': event,

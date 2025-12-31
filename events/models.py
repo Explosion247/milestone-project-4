@@ -40,7 +40,13 @@ class Comment(models.Model):
         User, on_delete=models.CASCADE, related_name="commenter"
     )
     content = models.TextField()
-    parent_id = models.ForeignKey("self", null=True, blank=True, related_name="replies", on_delete=models.CASCADE)
+    parent = models.ForeignKey(
+        "self",
+        null=True,
+        blank=True,
+        related_name="replies",
+        on_delete=models.CASCADE
+    )
     created_at = models.DateTimeField(auto_now_add=True)
     
     class Meta:
