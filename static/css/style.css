@@ -12,6 +12,16 @@ body {
     background-color: #f4fcfb;
 }
 
+.button-colour {
+    background-color: #5289ad;
+    color: #f4fcfb;
+    border: 15px 15px 0px 0px;
+    border-radius: 25px;
+    padding: 20px;
+
+
+}
+
 /* title image */
 .img-wrapper {
   position: relative;

@@ -7,8 +7,7 @@
     <div class="col-12">
         <div class="text-center my-4">
             <div class="position-relative d-inline-block">
-                <img src="{% static 'images/title-image.jpg' %}" class="img-fluid" alt="">
-                <button class="button-colour position-absolute bottom-0 start-0 m-5">Up coming Events</button>
+                <img src="{{ event.event_image.url }}" class="img-fluid" alt="">
             </div>
         </div>
     </div>
@@ -20,7 +19,7 @@
         <div class="card h-100">
             <div class="card-body ">
             <div class="image-container">
-                <a href="{% url 'event_details' x.slug %}">
+                <a href="">
                     {% if "placeholder" in x.image.url %}
                     <img class="card-img-top image-fluid" src="{% static 'images/game-cases.jpg' %}" alt="placeholder image">
                     {% else %}
