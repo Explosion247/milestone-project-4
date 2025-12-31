@@ -24,4 +24,24 @@ class Event(models.Model):
         related_name='liked_event',
         blank=True
     )
+    updated_at = models.DateField(auto_now=True)
     status = models.IntegerField(choices=STATUS, default=0)
+
+    class Meta:
+        ordering = ["-updated_at"]
+
+
+class Comment(models.Model):
+
+    event = models.ForeignKey(
+        Event, on_delete=models.CASCADE, related_name="comments"
+    )
+    author = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name="commenter"
+    )
+    content = models.TextField()
+    parent_id = models.ForeignKey("self", null=True, blank=True, related_name="replies", on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+    
+    class Meta:
+        ordering = ["-created_at"]

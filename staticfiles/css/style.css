@@ -22,6 +22,18 @@ body {
 
 }
 
+/* embedded map size adjustment */
+.map-embed {
+  max-width: 600px;   /* adjust */
+  width: 100%;
+  margin: 0 auto;
+}
+.map-embed iframe {
+  width: 100%;
+  height: 320px;      /* adjust */
+  border: 0;
+}
+
 /* title image */
 .img-wrapper {
   position: relative;

@@ -7,8 +7,10 @@
     <div class="col-12">
         <div class="text-center my-4">
             <div class="position-relative d-inline-block">
-                <img src="{% static 'images/title-image.jpg' %}" class="img-fluid" alt="">
+              <img src="{% static 'images/title-image.jpg' %}" class="img-fluid" alt="">
+              <a href="{% url 'all_events' %}">
                 <button class="button-colour position-absolute bottom-0 start-0 m-5">Up coming Events</button>
+              </a>
             </div>
         </div>
     </div>

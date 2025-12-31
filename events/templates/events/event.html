@@ -6,18 +6,18 @@
   <div class="row">
     <div class="col-12">
         <div class="text-center my-4">
-            <div class="position-relative d-inline-block">
-                <img src="{{ event.event_image.url }}" class="img-fluid" alt="">
-            </div>
+
+                <img src="{{ event.event_image.url }}" class="img-responsive"  style="max-width: 1000px;" alt="">
+
         </div>
     </div>  
   </div>
-  <div class="row">
-      <div class="col-6">
+  <div class="row m-4">
+      <div class="col-6 m">
         <h2>Location</h2>
         <p>{{ event.address }}</p>
         <p>Latitude: {{ event.lat }} Longitude: {{ event.long }} </p>
-        <p>{{ event.embeded_map | safe }}</p>
+        
       </div>
       <div class="col-3">
         <h2>Dates</h2>
@@ -30,9 +30,58 @@
       <div class="col-3">
         <h2>Tickets</h2>
         <p>This is where you can select how many tickets you would like to buy</p>
+      </div>
+      <div class="col-8">
+        {{ event.embeded_map | safe}}
+      </div>
+      <div id="comments">
+        <h3>Comments:</h3>
+        <div class="card-body">
+        {% for comment in comments %}
+          <div class="comment">
+            <p><strong>{{ comment.author }}</strong> wrote:</p>
+            <p>{{ comment.content }}</p>
 
+            <a class="reply-toggle" data-target="#reply-{{ comment.id }}">Reply</a>
+            <div id="reply-{{ comment.id }}" class="mt-2">
+              {% if user.is_authenticated %}
+                <form method="post">
+                  {% csrf_token %}
+                  {{ comment_form.content }}
+                  <input type="hidden" name="parent_id" value="{{ comment.id }}">
+                  <button type="submit">Submit reply</button>
+                </form>
+              {% endif %}
+            </div>
+
+            {% for reply in comment.replies.all %}
+              <div class="ml-4 border-left pl-3">
+                <p><strong>{{ reply.author }}</strong> replied:</p>
+                <p>{{ reply.content }}</p>
+              </div>
+            {% endfor %}
+          </div>
+        {% endfor %}
+
+        </div>
       </div>
     </div>
+      <div class="col-6 col-sm-12">
+        <div class="card-body">
+          {% if user.is_authenticated %}
+          <h3>Leave a comment:</h3>
+          <p>Posting as {{ user.username }}</p>
+          <form id="commentForm" method="post" style="margin-top: 1.3rem;">
+            {{ comment_form | safe }}
+            {% csrf_token %}
+            <button id="submitButton" type="submit" class="btn btn-signup btn-lg">submit</button>
+          </form>
+          {% else %}
+          <p>Log in to leave a Review</p>
+          {% endif %}
+        </div>
+      </div>
+
 </div>
 {% endblock %}
 
