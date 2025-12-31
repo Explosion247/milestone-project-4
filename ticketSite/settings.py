@@ -31,8 +31,8 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'https://ticketsite-a4ca730fbfa1.herokuapp.com/',
-    ''
+    'ticketsite-a4ca730fbfa1.herokuapp.com/',
+    '127.0.0.1'
 ]
 
 
