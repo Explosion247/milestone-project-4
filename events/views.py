@@ -20,3 +20,16 @@ def event_details(request, slug):
         "events/event.html",
         context
     )
+
+
+def all_events(request, slug):
+    queryset = Event.objects.filter(status=1)
+    event = get_object_or_404(queryset, slug=slug)
+    context = {
+        'event': event
+    }
+    return render(
+        request,
+        "events/all_events.html",
+        context
+    )
