@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 
 from pathlib import Path
 import os
+import dj_database_url
 if os.path.isfile('env.py'):
     import env
 
@@ -110,10 +111,10 @@ WSGI_APPLICATION = 'ticketSite.wsgi.application'
 
 db_url = os.environ.get("DATABASE_URL")
 if isinstance(db_url, bytes):
-    db_url = db_url.decode 
+    db_url = db_url.decode()
 
 DATABASES = {
-    'default': {
+    'default': dj_database_url.parse(db_url) if db_url else {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
