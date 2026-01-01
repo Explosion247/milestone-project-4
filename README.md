@@ -42,5 +42,5 @@ pip3 install django-allauth==0.50.0
 - [colour pallet - Colour scheme 48: Artic Reflection](https://www.figma.com/resource-library/website-color-schemes/)
 - [css for button on the main image](https://stackoverflow.com/questions/35647044/boostrap-how-to-stick-a-button-over-an-image-when-re-sizing)
 - ChatGPT was used to help with little errors along the way to find the reason something wasn't working
-- ChatGPT was used to help create the reply comments
 - ChatGPT was used to help split events between upcoming and previous events
+- [Help with creating the code for comments](https://www.youtube.com/watch?v=hZrlh4qU4eQ&list=PLCC34OHNcOtr025c1kHSPrnP18YPB-NFi&index=34)

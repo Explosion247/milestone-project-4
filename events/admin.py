@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Event, Comment
+from .models import Event, Comment, Ticket
 
 # Register your models here.
 
@@ -12,3 +12,4 @@ class EventAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Comment)
+admin.site.register(Ticket)

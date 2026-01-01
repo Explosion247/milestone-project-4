@@ -54,3 +54,12 @@ class Comment(models.Model):
 
     def __str__(self):
         return '%s - %s' % (self.event.title, self.name)
+
+
+class Ticket(models.Model):
+    price = models.DecimalField(max_digits=6, decimal_places=2)
+    sku = models.CharField(max_length=254, null=True, blank=True)
+    name = models.CharField(max_length=254)
+
+    def __str__(self):
+        return self.name
