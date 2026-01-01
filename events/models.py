@@ -36,7 +36,7 @@ class Comment(models.Model):
     event = models.ForeignKey(
         Event, on_delete=models.CASCADE, related_name="comments"
     )
-    author = models.ForeignKey(
+    name = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name="commenter"
     )
     content = models.TextField()
@@ -51,3 +51,6 @@ class Comment(models.Model):
     
     class Meta:
         ordering = ["-created_at"]
+
+    def __str__(self):
+        return '%s - %s' % (self.event.title, self.name)

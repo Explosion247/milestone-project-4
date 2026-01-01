@@ -35,6 +35,36 @@
         {{ event.embeded_map | safe}}
       </div>
     </div>
+    <h2>Comments...</h2>
+    {% if comments %}
+      <div class="row">
+        {% for comment in comments %}
+          <div class="col-md-6 mb-3">
+            <div class="border p-3 h-100">
+              <div class="fw-bold">{{ comment.name }} <small class="text-muted">{{ comment.created_at }}</small></div>
+              <div>{{ comment.content }}</div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    {% else %}
+      <p>No comments yet.</p>
+    {% endif %}
+    </div>
+      <div class="card-body">
+        {% if user.is_authenticated %}
+        <h3>Leave a review:</h3>
+        <p>Posting as {{ user.username }}</p>
+        <form id="commentForm" method="post" style="margin-top: 1.3rem;">
+          {{ comment_form | safe }}
+          {% csrf_token %}
+        
+          <button id="submitButton" type="submit" class="btn btn-signup btn-lg">submit</button>
+        </form>
+        {% else %}
+        <p>Log in to leave a Review</p>
+        {% endif %}
+    </div>
 </div>
 {% endblock %}
 
