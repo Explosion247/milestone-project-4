@@ -44,3 +44,4 @@ pip3 install django-allauth==0.50.0
 - ChatGPT was used to help with little errors along the way to find the reason something wasn't working
 - ChatGPT was used to help split events between upcoming and previous events
 - [Help with creating the code for comments](https://www.youtube.com/watch?v=hZrlh4qU4eQ&list=PLCC34OHNcOtr025c1kHSPrnP18YPB-NFi&index=34)
+- [shopping cart html and css](https://mdbootstrap.com/docs/standard/extended/shopping-carts/#docsTabsOverview)

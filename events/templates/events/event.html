@@ -29,10 +29,15 @@
       </div>
       <div class="col-3">
         <h2>Tickets</h2>
-        <p>This is where you can select how many tickets you would like to buy</p>
+        <p>How many tickets would you like to purchase?</p>
         <div>
-          {{ tickets_form | safe }}
+          {{ ticket_form | safe }}
           {% csrf_token %}
+        </div>
+        <div>
+          <button id="submitButton" type="submit" class="btn btn-signup btn-lg mt-4">
+            purchase
+          </button>
         </div>
       </div>
       <div class="col-8">

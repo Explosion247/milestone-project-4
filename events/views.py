@@ -18,6 +18,7 @@ def event_details(request, slug):
     event = get_object_or_404(queryset, slug=slug)
     comments = event.comments.all().order_by("-created_at")
     comment_form = CommentForm()
+    ticket_form = TicketForm()
 
     if request.method == "POST":
         comment_form = CommentForm(data=request.POST)
@@ -31,16 +32,22 @@ def event_details(request, slug):
                 'Your comment has been submitted'
             )
 
-    if request.method == "POST":
         ticket_form = TicketForm(data=request.POST)
         if ticket_form.is_valid():
             ticket = ticket_form.save(commit=False)
-            ticket.name
+            ticket.name = request.user
+            ticket.event = event
+            ticket.save()
+            messages.add_message(
+                request, messages.SUCCESS,
+                'ticket purchased'
+            )
 
     context = {
         "event": event,
         "comments": comments,
-        "comment_form": comment_form
+        "comment_form": comment_form,
+        "ticket_form": ticket_form
     }
 
     return render(

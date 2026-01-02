@@ -53,7 +53,8 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'django_summernote',
     'cloudinary',
-    'events'
+    'events',    
+    'cart',
 ]
 
 MIDDLEWARE = [
