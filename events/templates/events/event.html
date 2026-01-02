@@ -15,7 +15,7 @@
   <div class="row m-4">
       <div class="col-6 m">
         <h2>Location</h2>
-        <p>{{ event.address }}</p>
+        <p>{{ event.address | safe }}</p>
         <p>Latitude: {{ event.lat }} Longitude: {{ event.long }} </p>
         
       </div>
@@ -48,7 +48,9 @@
               <div class="fw-bold">{{ comment.name }} <small class="text-muted">{{ comment.created_at }}</small></div>
               <div id="comment{{ comment.id }}">
                 {{ comment.content }}
+                
               </div>
+              <br>
                 {% if user.is_authenticated and comment.name == user %}
                 <button class="btn btn-delete" data-comment_id="{{ comment.id }}">Delete</button>
                 <button class="btn btn-edit" data-comment_id="{{ comment.id }}">Edit</button>

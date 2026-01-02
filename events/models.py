@@ -12,8 +12,8 @@ class Event(models.Model):
     title = models.CharField(max_length=200, unique=True)
     slug = models.SlugField(max_length=200, unique=True)
     content = models.TextField()
-    event_image = CloudinaryField('event_image', default='placeholder')
-    hero_image = CloudinaryField('hero_image', default='placeholder')
+    event_image = CloudinaryField('event image', default='placeholder')
+    hero_image = CloudinaryField('hero image', default='placeholder')
     embeded_map = models.TextField(
         default='Please insert HTML for an embeded google map'
         )
