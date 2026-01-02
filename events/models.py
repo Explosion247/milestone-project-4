@@ -14,7 +14,9 @@ class Event(models.Model):
     content = models.TextField()
     event_image = CloudinaryField('event_image', default='placeholder')
     hero_image = CloudinaryField('hero_image', default='placeholder')
-    embeded_map = models.TextField(default='Please insert HTML for an embeded google map' )
+    embeded_map = models.TextField(
+        default='Please insert HTML for an embeded google map'
+        )
     event_date = models.DateTimeField(default=timezone.now)
     address = models.TextField()
     lat = models.FloatField("latitude", blank=True, null=True)
@@ -48,7 +50,7 @@ class Comment(models.Model):
         on_delete=models.CASCADE
     )
     created_at = models.DateTimeField(auto_now_add=True)
-    
+
     class Meta:
         ordering = ["-created_at"]
 
@@ -57,9 +59,13 @@ class Comment(models.Model):
 
 
 class Ticket(models.Model):
+    user = models.ForeignKey(
+        User, blank=True, on_delete=models.CASCADE, related_name="purchaser"
+    )
     price = models.DecimalField(max_digits=6, decimal_places=2)
     sku = models.CharField(max_length=254, null=True, blank=True)
-    name = models.CharField(max_length=254)
+    event = models.CharField(max_length=254)
+    amount = models.PositiveIntegerField(default=0)
 
     def __str__(self):
-        return self.name
+        return self.event

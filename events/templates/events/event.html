@@ -30,6 +30,10 @@
       <div class="col-3">
         <h2>Tickets</h2>
         <p>This is where you can select how many tickets you would like to buy</p>
+        <div>
+          {{ tickets_form | safe }}
+          {% csrf_token %}
+        </div>
       </div>
       <div class="col-8">
         {{ event.embeded_map | safe}}
@@ -42,7 +46,13 @@
           <div class="col-md-6 mb-3">
             <div class="border p-3 h-100">
               <div class="fw-bold">{{ comment.name }} <small class="text-muted">{{ comment.created_at }}</small></div>
-              <div>{{ comment.content }}</div>
+              <div id="comment{{ comment.id }}">
+                {{ comment.content }}
+              </div>
+                {% if user.is_authenticated and comment.name == user %}
+                <button class="btn btn-delete" data-comment_id="{{ comment.id }}">Delete</button>
+                <button class="btn btn-edit" data-comment_id="{{ comment.id }}">Edit</button>
+                {% endif %}
             </div>
           </div>
         {% endfor %}
@@ -66,5 +76,32 @@
         {% endif %}
     </div>
 </div>
-{% endblock %}
+<div class="modal fade" id="deleteModal" tabindex="-1"
+  aria-labelledby="deleteModalLabel" aria-hidden="true" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"
+          id="deleteModalLabel">Delete comment?</h5>
+        <button type="button" class="btn-close"
+          data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Are you sure you want to delete your comment?
+        This action cannot be undone.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary"
+          data-bs-dismiss="modal">Close</button>
+        <a id="deleteConfirm" href="#" class="btn
+          btn-danger">Delete</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}
+{% block extras %}
+<script src="{% static 'js/comments.js' %}"></script>
+{% endblock extras %}
 
