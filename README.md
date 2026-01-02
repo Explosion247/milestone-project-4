@@ -26,7 +26,7 @@ pip3 install django-allauth==0.50.0
 ### included
 
 ### To be added later
-- once an event is over a 2/3 years old, automatically remove it from the website to only keep recent events
+- once an event is over a 2-3 years old, automatically remove it from the website to only keep recent events
 
 
 ## Credits and References
