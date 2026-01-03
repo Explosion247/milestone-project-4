@@ -17,14 +17,6 @@ if os.path.isfile('env.py'):
     import env
 
 
-DEBUG = os.environ.get("DEBUG", "False").lower() == "true"
-
-if not DEBUG:
-    SECURE_SSL_REDIRECT = True
-    SECURE_HSTS_SECONDS = 31536000  # 1 year
-    SESSION_COOKIE_SECURE = True
-    CSRF_COOKIE_SECURE = True
-
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -39,13 +31,8 @@ AUTH_DIRS = os.path.join(BASE_DIR, 'templates', 'allauth')
 SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get("DEBUG", "False").lower() == "true"
+DEBUG = False
 
-if not DEBUG:
-    SECURE_SSL_REDIRECT = True
-    SECURE_HSTS_SECONDS = 31536000  # 1 year
-    SESSION_COOKIE_SECURE = True
-    CSRF_COOKIE_SECURE = True
 
 ALLOWED_HOSTS = [
     'ticketsite-a4ca730fbfa1.herokuapp.com',
