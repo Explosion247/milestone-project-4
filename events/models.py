@@ -12,7 +12,7 @@ class Event(models.Model):
     title = models.CharField(max_length=200, unique=True)
     slug = models.SlugField(max_length=200, unique=True)
     content = models.TextField()
-    event_image = CloudinaryField('event image', default='placeholder')
+    event_image = CloudinaryField('eventimage', default='placeholder')
     hero_image = CloudinaryField('hero image', default='placeholder')
     embeded_map = models.TextField(
         default='Please insert HTML for an embeded google map'
@@ -60,12 +60,14 @@ class Comment(models.Model):
 
 class Ticket(models.Model):
     user = models.ForeignKey(
-        User, blank=True, on_delete=models.CASCADE, related_name="purchaser"
+        User, null=True, blank=True,
+        on_delete=models.CASCADE, related_name="purchaser"
     )
     price = models.DecimalField(max_digits=6, decimal_places=2)
     sku = models.CharField(max_length=254, null=True, blank=True)
     event = models.CharField(max_length=254)
-    amount = models.PositiveIntegerField(default=0)
+    amount = models.PositiveIntegerField(default=0, null=True)
+
 
     def __str__(self):
         return self.event

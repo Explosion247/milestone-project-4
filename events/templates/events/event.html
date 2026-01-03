@@ -29,16 +29,17 @@
       </div>
       <div class="col-3">
         <h2>Tickets</h2>
-        <p>How many tickets would you like to purchase?</p>
-        <div>
-          {{ ticket_form | safe }}
+        <p>How many tickets would you like to purchase</p>
+        <form method="post" action="{% url 'cart' %}">
           {% csrf_token %}
-        </div>
-        <div>
+          <input type="hidden" name="event_id" value="{{ event.id }}">
+          <input type="hidden" name="event_slug" value="{{ event.slug }}">
+          <label class="form-label" for="ticketQuantity">Quantity</label>
+          <input id="ticketQuantity" type="number" name="quantity" value="1" min="1" class="form-control w-50 mb-2">
           <button id="submitButton" type="submit" class="btn btn-signup btn-lg mt-4">
             purchase
           </button>
-        </div>
+        </form>
       </div>
       <div class="col-8">
         {{ event.embeded_map | safe}}
